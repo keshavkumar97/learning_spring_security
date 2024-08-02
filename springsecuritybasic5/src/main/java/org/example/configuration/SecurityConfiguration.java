@@ -14,10 +14,24 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    private final DataSource dataSource;
+
+    private final BCryptPasswordEncoder encoder;
+    //in constructor injection @autowired is optional because when
+    // dependencies passed through constructor spring automatically
+    // understands and perform dependency injection but still if you provide
+    // @autowired annotation it is good for other developer to understand
+    // that here constructor is used for dependency injection. this
+    // annotation can also be used in one more case when you have multiple
+    // constructor then to specify that which constructor is being used for
+    // dependency injection it is helpful
     @Autowired
-    private DataSource dataSource;
-    @Autowired
-    private BCryptPasswordEncoder encoder;
+    public SecurityConfiguration(DataSource dataSource,
+                                 BCryptPasswordEncoder encoder) {
+        this.dataSource = dataSource;
+        this.encoder = encoder;
+    }
 
     //    what all requests are secured will be defined by the below method
     @Override
