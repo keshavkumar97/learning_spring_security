@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /secure
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/userdb
+    driver-class-name: org.postgresql.Driver
